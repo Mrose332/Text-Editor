@@ -1,6 +1,5 @@
 import { openDB } from 'idb';
 
-
 const initdb = async () =>
   openDB('jate', 1, {
     upgrade(db) {
@@ -14,37 +13,28 @@ const initdb = async () =>
   });
 
 
-export const putDb = async (content) => {
-  const jateDb = await openDB('jate', 1);
+export const putDb = async (id, content) => {
+  console.log('PUT request to the database');
 
+  const jateDb = await openDB('jate', 1);
   const tx = jateDb.transaction('jate', 'readwrite');
-
   const store = tx.objectStore('jate');
-
-  const request = store.put({ id: 1, text: content });
-
+  const request = store.put({ id: id, content: content });
   const result = await request;
-  console.log('add to database: ', result);
-}
+  console.log('data saved to the database', result);
+};
 
 
-export const getDb = async () => {
+export const getDb = async (id) => {
+  console.log('GET content from the database');
+
   const jateDb = await openDB('jate', 1);
-
-  const tx = jateDb.transaction('jate', 'readonly');
-
-  const store = tx.objectStore('jate');
-
-  const request = store.get(1);
-  
-  const result = await request;
-  console.log('Data retrieved from database: ', result);
-  if(result) {
-    return result.text;
-  } else {
-    return;
-  }
-  
-}
+  const result = await jateDb
+  .transaction('jate', 'readonly')
+  .objectStore('jate').get(id);
+  console.log('result.value', result);
+  result ? console.log('You got Data!'):console.log('data not found')
+  return result?.jate;
+};
 
 initdb();
