@@ -17,7 +17,7 @@ This application uses Progressive Web Application utilizing indexDB, local stora
 
 ## Installation
 
-NOM run start
+NPM run start
 
 ## License
 Project is license under MIT
@@ -26,7 +26,7 @@ Project is license under MIT
 
 ## Deployed 
 
-
+https://text-editor232.herokuapp.com/
 
 
 ## Contributors
@@ -40,4 +40,4 @@ Reach me for additional questions at: mailto:mrose332@gmail.com.
 
 ## Refrences
 
-Refrenced GitLab MSU Course activities repo for NoSQL
+Refrenced GitLab MSU Course activities 
